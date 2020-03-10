@@ -1,0 +1,21 @@
+h1 {
+  color: cornflowerblue;
+}
+
+h3{
+  color: lightskyblue;
+}
+.even {
+  background-color: cadetblue;
+}
+
+.odd {
+  background-color: beige;
+}
+
+.red {
+  color: red;
+}
+.size20 {
+  font-size: 20px;
+}

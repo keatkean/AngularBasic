@@ -1,0 +1,193 @@
+<h1>Login as {{username}}</h1>
+<h1>Interpolation</h1>
+<p>{{title}}</p>
+<p>{{getTitle()}}</p>
+<hr>
+<h1>Property Binding</h1>
+<p [innerText]="title"></p>
+<p [innerText]="getTitle()"></p>
+<p [innerText]="'Hello & Welcome to '+ ' Angular Data binding '"></p>
+<p [innerText]="100*80"></p>
+<p [style.color]="color">This is red</p>
+<hr>
+<h1>Event Binding</h1>
+<button (click)='buttonClicked()'>Click Me</button>
+<p> Button Clicked {{count}} Times </p>
+<hr>
+<h1>Two Way Binding</h1>
+Enter your Name : <input type='text' [(ngModel)]='name' /><br>
+You have entered {{name}}
+<hr>
+<h1>Child/Nested Component</h1>
+<app-customers></app-customers>
+<hr>
+<h1>ngFor</h1>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    {{movieTitle}}
+  </div>
+
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Title</th>
+          <th>Director</th>
+          <th>Cast</th>
+          <th>Release Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let movie of movies;let i=index;let o= odd; let e= even;"
+            [ngClass]="{odd: o, even: e}">
+          <td>{{i + 1}}</td>
+          <td>{{movie.title}}</td>
+          <td>{{movie.director}}</td>
+          <td>{{movie.cast}}</td>
+          <td>{{movie.releaseDate}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<hr>
+<h1>ngSwitch</h1>
+Input string : <label>
+  <input type='text' [(ngModel)] ="num"/>
+</label>
+<div [ngSwitch]="num">
+  <div *ngSwitchCase="'1'">One</div>
+  <div *ngSwitchCase="'2'">Two</div>
+  <div *ngSwitchCase="'3'">Three</div>
+  <div *ngSwitchCase="'4'">Four</div>
+  <div *ngSwitchCase="'5'">Five</div>
+  <div *ngSwitchDefault>This is Default</div>
+</div>
+<div class='panel panel-primary'>
+  <h1>ngSwitch Example 2</h1>
+<div class="panel-body">
+  <div class='row'>
+    <div class='col-md-6'>
+      <select [(ngModel)]="selectedValue">
+        <option *ngFor="let item of items;" [value]="item.name">{{item.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class='col-md-6'>
+    <div class='row' [ngSwitch]="selectedValue">
+      <div *ngSwitchCase="'One'">One is Selected</div>
+      <div *ngSwitchCase="'Two'">Two is Selected</div>
+      <div *ngSwitchCase="'Two'">Two Again used in another element</div>
+      <div *ngSwitchDefault>This is Default</div>
+    </div>
+  </div>
+  <hr>
+  <h1>ngSwitch using ng-template</h1>
+  <div class='col-md-6'>
+    <div class='row' [ngSwitch]="selectedValue">
+      <ng-template [ngSwitchCase]="'One'">One is Selected</ng-template>
+      <ng-template [ngSwitchCase]="'Two'">Two is Selected</ng-template>
+      <ng-template ngSwitchDefault>This is Default</ng-template>
+    </div>
+  </div>
+
+</div>
+</div>
+<hr>
+<h1>ngIf</h1>
+
+<label> ShowMe?<input type="checkbox" [(ngModel)]="showMe" /></label>
+
+
+<p *ngIf="showMe">
+  ShowMe is checked
+</p>
+<p *ngIf="!showMe">
+  ShowMe is unchecked
+</p>
+
+<h3>ngIf Else</h3>
+
+<p *ngIf="showMe; else elseBlock1">
+  ShowMe is checked
+</p>
+
+<ng-template #elseBlock1>
+  <p>ShowMe is unchecked Using elseBlock</p>
+</ng-template>
+
+<h3>ngIf then else</h3>
+
+<p *ngIf="showMe; then thenBlock2 else elseBlock2">
+  This is not rendered
+</p>
+
+<ng-template #thenBlock2>
+  <p>ShowMe is checked Using thenblock</p>
+</ng-template>
+
+<ng-template #elseBlock2>
+  <p>ShowMe is unchecked Using elseBlock</p>
+</ng-template>
+
+<h3>using hidden </h3>
+
+<p [hidden]="showMe">
+  content to render, when the condition is true  using hidden property binding
+</p>
+
+<p [hidden]="!showMe">
+  content to render, when the condition is false. using hidden property binding
+</p>
+<hr>
+<h1>ngClass</h1>
+<h3>ngClass with a String</h3>
+<div [ngClass]="'red size20'"> Red Text with Size 20px </div>
+<h3>ngClass with Array</h3>
+<div [ngClass]="['red','size20']">Red Text with Size 20px </div>
+<h3>ngClass with Object</h3>
+<div class="row">
+  <div [ngClass]="{'red':true,'size20':true}">Red Text with Size 20px</div>
+</div>
+<hr>
+<h1>ngStyle</h1>
+<h3>Change Style Dynamically</h3>
+<input [(ngModel)]="color" />
+<div [ngStyle]="{'color': color}">Change my color</div>
+<h3>ngStyle multiple attributes</h3>
+<p [ngStyle]="{'color': 'purple',
+               'font-size': '20px',
+               'font-weight': 'bold'}">
+  Multiple styles
+</p>
+<h3>Specifying CSS Units in ngStyle</h3>
+<input [(ngModel)]="size" />
+<div [ngStyle]="{'font-size.px': size}">Change my size</div>
+<h3>Using object from Controller</h3>
+<div [ngStyle]="styleClass">size & Color</div>
+<hr>
+<app-pipe-example></app-pipe-example>
+<hr>
+<h1>@Input Decorator</h1>
+<button (click)="increment()">Increment</button>
+<button (click)="decrement()">decrement</button>
+
+<h1>@Output Decorator</h1>
+<app-child-component [count]=Counter (countChanged)="countChangedHandler($event)"></app-child-component>`
+<hr>
+<app-life-cycle></app-life-cycle>
+
+<h3>Init & Destroy</h3>
+<button (click)="toggle()">Hide/Show Child </button>
+<app-life-cycle-init-destroy *ngIf="displayChild"></app-life-cycle-init-destroy>
+
+<app-life-cycle-onchanges [message]=message [customer]=customer></app-life-cycle-onchanges>
+<p> Message : <input type='text' [(ngModel)]='message'> </p>
+<p> Code : <input type='text' [(ngModel)]='code'></p>
+<p> Name : <input type='text' [(ngModel)]='name'></p>
+<p><button (click)="updateCustomer()">Update </button>
+        
